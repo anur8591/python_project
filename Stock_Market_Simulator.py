@@ -9,9 +9,8 @@ class Stock:
         self.price = price
 
     def update_price(self):
-        """Randomly change stock price to simulate market fluctuations"""
-        change = random.uniform(-5, 5)  # Random price change between -5 and +5
-        self.price = round(max(1, self.price + change), 2)  # Ensure price doesn't go below 1
+        change = random.uniform(-20, 20)
+        self.price = round(max(1, self.price + change), 2)
 
 class Market:
     def __init__(self):
@@ -29,13 +28,12 @@ class Market:
         return stock_info
 
     def update_market(self):
-        """Update stock prices randomly"""
         for stock in self.stocks:
             stock.update_price()
 
 class Portfolio:
     def __init__(self):
-        self.balance = 10000  # Starting money
+        self.balance = 10000
         self.holdings = {}
 
     def buy_stock(self, market, symbol, quantity):
@@ -73,7 +71,6 @@ class Portfolio:
                 portfolio_info += f"{symbol}: {data['quantity']} shares at ${data['price']} each\n"
         return portfolio_info
 
-# GUI Application
 class StockMarketApp:
     def __init__(self, root):
         self.market = Market()
@@ -107,7 +104,7 @@ class StockMarketApp:
         self.refresh_display()
 
     def refresh_display(self):
-        self.search_entry.delete(0, tk.END)  # Clear search entry
+        self.search_entry.delete(0, tk.END)
         self.stock_display.delete(1.0, tk.END)
         self.stock_display.insert(tk.END, self.market.display_stocks())
         self.portfolio_display.delete(1.0, tk.END)
@@ -119,7 +116,7 @@ class StockMarketApp:
         messagebox.showinfo("Info", "Market prices updated!")
 
     def buy_stock(self):
-        self.status_message.config(text="")  # Clear previous status message
+        self.status_message.config(text="")
         symbol = simpledialog.askstring("Input", "Enter stock symbol to buy:").upper()
         quantity = simpledialog.askinteger("Input", "Enter quantity:")
         if symbol and quantity:
@@ -128,7 +125,7 @@ class StockMarketApp:
             self.refresh_display()
 
     def sell_stock(self):
-        self.status_message.config(text="")  # Clear previous status message
+        self.status_message.config(text="")
         symbol = simpledialog.askstring("Input", "Enter stock symbol to sell:").upper()
         quantity = simpledialog.askinteger("Input", "Enter quantity:")
         if symbol and quantity:

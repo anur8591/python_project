@@ -1,7 +1,7 @@
 from tkinter import *
 
 class LoanCalculator:
-    def __init__(self):  # Corrected constructor name
+    def __init__(self): 
         window = Tk()  
         window.title("Loan Calculator")  
         window.geometry("400x350")  # Increased window size for spacing
